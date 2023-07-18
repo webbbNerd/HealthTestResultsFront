@@ -1,11 +1,8 @@
 import React, { useEffect, useState, useRef } from "react";
-import "../styles.css";
+import "./styles.css";
 
 function Card() {
-
-  return (
-    <></>
-  );
+  return <>Report</>;
 }
 
 export default Card;

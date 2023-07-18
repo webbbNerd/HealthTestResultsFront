@@ -9,7 +9,8 @@ import Cookies from "js-cookie";
 import "./App.css";
 import LoginPage from "./components/src/Auth";
 import HomePage from "./components/src/Home";
-const token = Cookies.get("jwttokenforwebrtc");
+import Form from "./components/src/Home/Form";
+const token = Cookies.get("jwttoken");
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(true);
@@ -25,7 +26,7 @@ function App() {
 
   // Wrapper component for protected routes
   function ProtectedRoute({ path, element }) {
-    return isLoggedIn ? element : <Navigate to="/login" />;
+    return !isLoggedIn ? element : <Navigate to="/login" />;
   }
 
   return (
@@ -37,6 +38,10 @@ function App() {
           <Route
             path="/home"
             element={<ProtectedRoute element={<HomePage />} />}
+          />
+          <Route
+            path="/form"
+            element={<ProtectedRoute element={<Form />} />}
           />
         </Routes>
       </div>

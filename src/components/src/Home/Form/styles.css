@@ -1,0 +1,10 @@
+.formofhealth .ant-input-number.ant-input-number-in-form-item {
+  width: 20vw;
+}
+
+.formofhealth Form {
+  margin: 0 auto;
+  padding: 40px 10px 20px 10px;
+  background-color: azure;
+  border-radius: 12px;
+}

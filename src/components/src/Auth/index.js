@@ -110,7 +110,7 @@ function LoginPage() {
       .then((data) => {
         // Handle the response from the server
         if (data.message) {
-          cookies.set("jwttokenforwebrtc", data.token, {
+          cookies.set("jwttoken", data.token, {
             path: "/",
             expires: new Date(Date.now() + 25807238),
           });

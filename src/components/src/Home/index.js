@@ -1,7 +1,6 @@
 import React, { useEffect, useState, useRef } from "react";
 import "./styles.css";
-import io from "socket.io-client";
-import styled from "styled-components";
+import List from "./List/index";
 
 // const Container = styled.div`
 //   height: 100vh;
@@ -11,9 +10,10 @@ import styled from "styled-components";
 // `;
 
 function Home() {
-
   return (
-    <>Home</>
+    <div>
+      <List />
+    </div>
   );
 }
 
