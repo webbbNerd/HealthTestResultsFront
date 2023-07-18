@@ -1,16 +1,16 @@
 import { configureStore } from '@reduxjs/toolkit';
 
 const initialState = {
-  count: null,
+  formdata: null,
 };
 
 const rootReducer = (state = initialState, action) => {
   switch (action.type) {
-    // case 'INCREMENT':
-    //   return {
-    //     ...state,
-    //     count: state.count + 1
-    //   };
+    case 'setFormData':
+      return {
+        ...state,
+        formdata: action.payload
+      };
     default:
       return state;
   }

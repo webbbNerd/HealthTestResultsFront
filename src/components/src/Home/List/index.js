@@ -6,7 +6,9 @@ import { useNavigate } from "react-router-dom";
 
 function List() {
   const navigate = useNavigate();
-  // const count = useSelector(state => state.count);
+  const {formdata} = useSelector((state) => ({
+    formdata: state.formdata
+  }));
   // const dispatch = useDispatch();
 
   // const increment = () => {

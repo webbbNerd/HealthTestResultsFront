@@ -1,5 +1,7 @@
 import React, { useEffect, useState, useRef } from "react";
 import "./styles.css";
+import Request from "../../../../request";
+import { useDispatch, useSelector } from "react-redux";
 import {
   Button,
   Cascader,
@@ -13,27 +15,37 @@ import {
   TreeSelect,
   notification,
 } from "antd";
+import { useNavigate } from "react-router-dom";
 
 function FormPage() {
   const [form] = Form.useForm();
   const [loader, setLoader] = useState(false);
+  const navigate = useNavigate();
+  const count = useSelector((state) => state.count);
+  const dispatch = useDispatch();
 
   const onFinish = async (values) => {
     setLoader(true);
-    let { data, success, error, message } = await Request.submitForm({
-      data: values,
-    });
+    // let { data, success, error, message } = await Request.submitForm({
+    //   data: values,
+    // });
+    var success = true;
     if (success) {
-      console.log(data, "dataaaaaaaaaa")
+      // console.log(data, "dataaaaaaaaaa");
+      dispatch({ type: "setFormData", payload: values });
       notification.success({
-        message: message,
+        message: "message",
       });
+      setTimeout(() => {
+        navigate("/report");
+      }, 0);
     } else {
       notification.error({
-        message: message,
+        message: "message",
       });
     }
     console.log("Success:", values);
+    setLoader(false);
   };
 
   return (

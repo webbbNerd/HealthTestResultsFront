@@ -10,6 +10,8 @@ import "./App.css";
 import LoginPage from "./components/src/Auth";
 import HomePage from "./components/src/Home";
 import Form from "./components/src/Home/Form";
+import Report from "./components/src/Home/Report";
+
 const token = Cookies.get("jwttoken");
 
 function App() {
@@ -42,6 +44,10 @@ function App() {
           <Route
             path="/form"
             element={<ProtectedRoute element={<Form />} />}
+          />
+          <Route
+            path="/report"
+            element={<ProtectedRoute element={<Report />} />}
           />
         </Routes>
       </div>

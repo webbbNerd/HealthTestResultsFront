@@ -1,5 +1,6 @@
 import axios from "axios";
 import { api } from "./settings";
+import Cookies from "js-cookie";
 const token = Cookies.get("jwttoken");
 
 const authAxios = axios.create({
