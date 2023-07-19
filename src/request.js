@@ -25,10 +25,52 @@ class Request {
     } catch (e) {}
   };
 
+  listForm(data) {
+    return new Promise((next, error) => {
+      authAxios
+        .post("/userdata/list", { ...data }, getToken())
+        .then((d) => {
+          next(d.data);
+        })
+        .catch((err) => {
+          next(err.respose.data);
+          this.error(err);
+        });
+    });
+  }
+
   submitForm(data) {
     return new Promise((next, error) => {
       authAxios
-        .post("/form", { ...data }, getToken())
+        .post("/userdata", { ...data }, getToken())
+        .then((d) => {
+          next(d.data);
+        })
+        .catch((err) => {
+          next(err.respose.data);
+          this.error(err);
+        });
+    });
+  }
+
+  submitForm(data) {
+    return new Promise((next, error) => {
+      authAxios
+        .post("/userdata", { ...data }, getToken())
+        .then((d) => {
+          next(d.data);
+        })
+        .catch((err) => {
+          next(err.respose.data);
+          this.error(err);
+        });
+    });
+  }
+
+  submitForm(data) {
+    return new Promise((next, error) => {
+      authAxios
+        .post("/userdata", { ...data }, getToken())
         .then((d) => {
           next(d.data);
         })
