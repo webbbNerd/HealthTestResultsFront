@@ -40,7 +40,9 @@ function List() {
   const handleReportSee = async (id) => {
     navigate(`/report/${id}`);
   };
-  const handleReportEdit = () => {};
+  const handleReportEdit = (id) => {
+    navigate(`/form/${id}`);
+  };
   const handleReportDelete = async (id) => {
     setLoader(true);
     let { data, success, error, message } = await Request.deleteForm(id);

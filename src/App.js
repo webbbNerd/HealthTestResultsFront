@@ -33,9 +33,9 @@ function App() {
   useEffect(() => {
     if (token) {
       setIsLoggedIn(true);
-      localStorage.setItem('jwttoken', token);
+      localStorage.setItem("jwttoken", token);
     } else {
-      localStorage.removeItem('jwttoken');
+      localStorage.removeItem("jwttoken");
       setIsLoggedIn(false);
     }
   }, [token]);
@@ -59,6 +59,10 @@ function App() {
           <Route
             path="/report/:id"
             element={<ProtectedRoute element={<Report />} />}
+          />
+          <Route
+            path="form/:id"
+            element={<ProtectedRoute element={<Form />} />}
           />
         </Routes>
       </div>

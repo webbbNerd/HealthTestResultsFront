@@ -68,6 +68,7 @@ class Request {
   }
 
   updateForm(data, id) {
+    console.log(id, data);
     return new Promise((next, error) => {
       authAxios
         .put(`/userdata/${id}`, { ...data }, getToken())

@@ -15,3 +15,21 @@
   background: #e5e5e5;
   margin-bottom: 0;
 }
+
+.titleName {
+  background: #ff000036;
+  padding: 15px;
+  margin: 10px;
+  border-radius: 0px;
+  margin-left: 0;
+  margin-right: 0;
+}
+
+.titlenameReport{
+  background: #dedede36;
+  padding: 15px;
+  margin: 10px;
+  border-radius: 0px;
+  margin-left: 0;
+  margin-right: 0;
+}
