@@ -1,16 +1,16 @@
 import axios from "axios";
 import { api } from "./settings";
-import Cookies from "js-cookie";
-const token = Cookies.get("jwttoken");
 
 const authAxios = axios.create({
   baseURL: api,
 });
 
+const token = localStorage.getItem("jwttoken");
+
 export const getToken = () => {
   return {
     headers: {
-      Autherization: "Token " + token,
+      token: token,
       type: "web",
     },
   };
@@ -20,20 +20,34 @@ class Request {
   error = (err) => {
     try {
       if (err.response.status === 401) {
-        Cookies.remove("jwttoken");
+        localStorage.removeItem("jwttoken");
       }
     } catch (e) {}
   };
 
-  listForm(data) {
+  listForm() {
     return new Promise((next, error) => {
       authAxios
-        .post("/userdata/list", { ...data }, getToken())
+        .get("/userdata", getToken())
         .then((d) => {
           next(d.data);
         })
         .catch((err) => {
-          next(err.respose.data);
+          next(err.response.data);
+          this.error(err);
+        });
+    });
+  }
+
+  fetchReport(id) {
+    return new Promise((next, error) => {
+      authAxios
+        .get(`/userdata/report/${id}`, getToken())
+        .then((d) => {
+          next(d.data);
+        })
+        .catch((err) => {
+          next(err.response.data);
           this.error(err);
         });
     });
@@ -53,10 +67,10 @@ class Request {
     });
   }
 
-  submitForm(data) {
+  updateForm(data, id) {
     return new Promise((next, error) => {
       authAxios
-        .post("/userdata", { ...data }, getToken())
+        .put(`/userdata/${id}`, { ...data }, getToken())
         .then((d) => {
           next(d.data);
         })
@@ -67,10 +81,10 @@ class Request {
     });
   }
 
-  submitForm(data) {
+  deleteForm(id) {
     return new Promise((next, error) => {
       authAxios
-        .post("/userdata", { ...data }, getToken())
+        .delete(`/userdata/${id}`, getToken())
         .then((d) => {
           next(d.data);
         })

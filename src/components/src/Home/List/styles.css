@@ -1,0 +1,17 @@
+.h3Reports {
+  height: 50vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #686868;
+  font-size: 28px;
+}
+
+.reportHeading {
+  padding: 10px 0 10px 0;
+  border-bottom: 2px solid;
+  font-size: 18px;
+  font-weight: 600;
+  background: #e5e5e5;
+  margin-bottom: 0;
+}

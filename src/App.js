@@ -7,34 +7,35 @@ import {
 } from "react-router-dom";
 import Cookies from "js-cookie";
 import "./App.css";
+import { useDispatch, useSelector } from "react-redux";
 import LoginPage from "./components/src/Auth";
 import HomePage from "./components/src/Home";
 import Form from "./components/src/Home/Form";
 import Report from "./components/src/Home/Report";
 
 function App() {
+  const dispatch = useDispatch();
   const [isLoggedIn, setIsLoggedIn] = useState(true);
-  const [token, setToken] = useState(null);
+  const [token, setToken] = useState(Cookies.get("jwttoken"));
 
   useEffect(() => {
-    document.addEventListener(
-      "cookiechange",
-      ({ detail: { oldValue, newValue } }) => {
-        var token1 = Cookies.get("jwttoken");
-        // console.log(
-        //   `Cookie changed from "${oldValue}" to "${newValue}"`,
-        //   "token", token
-        // );
-        setToken(token1);
+    const interval = setInterval(() => {
+      const newToken = Cookies.get("jwttoken");
+      if (newToken !== token) {
+        setToken(newToken);
+        // dispatch({ type: "setToken", payload: newToken });
       }
-    );
-  }, []);
+    }, 1000); // Adjust the interval as needed
+
+    return () => clearInterval(interval);
+  }, [token]);
 
   useEffect(() => {
-    console.log("heloooooooo", token);
     if (token) {
       setIsLoggedIn(true);
+      localStorage.setItem('jwttoken', token);
     } else {
+      localStorage.removeItem('jwttoken');
       setIsLoggedIn(false);
     }
   }, [token]);
@@ -56,7 +57,7 @@ function App() {
           />
           <Route path="/form" element={<ProtectedRoute element={<Form />} />} />
           <Route
-            path="/report"
+            path="/report/:id"
             element={<ProtectedRoute element={<Report />} />}
           />
         </Routes>

@@ -26,25 +26,21 @@ function FormPage() {
 
   const onFinish = async (values) => {
     setLoader(true);
-    // let { data, success, error, message } = await Request.submitForm({
-    //   data: values,
-    // });
-    var success = true;
+    let { data, success, error, message } = await Request.submitForm({
+      ...values,
+    });
     if (success) {
-      // console.log(data, "dataaaaaaaaaa");
-      dispatch({ type: "setFormData", payload: values });
       notification.success({
-        message: "message",
+        message: message || "Report Added Successfully",
       });
       setTimeout(() => {
-        navigate("/report");
+        navigate(`/report/${data._id}`);
       }, 0);
     } else {
       notification.error({
-        message: "message",
+        message: message || "Some Error Occured",
       });
     }
-    console.log("Success:", values);
     setLoader(false);
   };
 

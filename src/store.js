@@ -1,15 +1,21 @@
-import { configureStore } from '@reduxjs/toolkit';
+import { configureStore } from "@reduxjs/toolkit";
 
 const initialState = {
   formdata: null,
+  token: null,
 };
 
 const rootReducer = (state = initialState, action) => {
   switch (action.type) {
-    case 'setFormData':
+    case "setFormData":
       return {
         ...state,
-        formdata: action.payload
+        formdata: action.payload,
+      };
+    case "setToken":
+      return {
+        ...state,
+        token: action.payload,
       };
     default:
       return state;
@@ -17,7 +23,7 @@ const rootReducer = (state = initialState, action) => {
 };
 
 const store = configureStore({
-    reducer: rootReducer
-  });
+  reducer: rootReducer,
+});
 
 export default store;
